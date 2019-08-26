@@ -12,5 +12,22 @@
 - password: 1234
 ```
 
-# Enpoint documentation
+# Endpoints documentation
 - Check the folder 'docs' and open the api.html to find the endpoints
+
+# Functional requirements
+
+```
+
+- Login of company administrator
+
+- Employee login
+
+- The administrator can mark the entry and exit of his employees
+
+- The administrator manages the reports of entry and exit of his employees
+
+- The administrator manages employee information
+
+- Employee check their entry and exit report
+```
