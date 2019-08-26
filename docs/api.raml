@@ -10,6 +10,18 @@ traits:
       Authorization:
         description: Auth token with the credential returned with the default admin user
         type: string
+/:
+  description: check if you're connected
+  get:
+    description: Retrieve all users that are admins
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              {
+                "message": "connected"
+              }
 
 /user_token:
   description: Token creation
