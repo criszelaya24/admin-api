@@ -12,46 +12,50 @@ traits:
         type: string
 
 /user_token:
-  description: token creation
+  description: Token creation
   post:
-    description: create token for user already signed up
-    responses:
-      200:
-        body:
-          application/json:
-           type: |
-              {
-                "auth": {
-                  "email": "string",
-                  "password": "string"
-                } 
-              }
-            example: |
-              {
-                "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NjY5MTc4NjgsInN1YiI6MSwiZW1haWwiOiJqYW1lc0BnbWFpbC5jb20ifQ.YDkzwlRq0AtRusJ4QGmBtVsgv1HnHRzV_GOmLFGw20M"
-              }
+      description: Create new token for user.
+      body:
+        application/json:
+          example: |
+            {
+             "auth": {
+                "email": "Admin@admin.com",
+                "password": "1234"
+              } 
+            }
+      responses:
+        201:
+          body:
+            application/json:
+              example: |
+                {
+                  "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NjY5MjY0MTMsInN1YiI6MSwiZW1haWwiOiJBZG1pbkBhZG1pbi5jb20ifQ.AvlpUsZ1mF53XCU9VjNxR3lxHKe05gt2jsl56YRkhxI"
+                }
 
 /users:
   description: users related endpoints / Must be admin
   post:
     is: [withAuthHeaders]
     description: create new users
-    responses:
-      200:
-        body:
+    body:
           application/json:
-           type: |
-              {
-              "user": {
-                "name": "james1",
-                "email": "james1@gmail.com",
-                "password": "Pokemon43!",
-                "admin": false
-                }
-              }
             example: |
               {
                 "user": {
+                    "name": "james1",
+                    "email": "james1@gmail.com",
+                    "password": "1234",
+                    "admin": false,
+                }
+              }
+    responses:
+      200:
+        body:
+            application/json:
+              example: |
+                {
+                  "user": {
                     "id": 2,
                     "name": "james1",
                     "email": "james1@gmail.com",
@@ -60,7 +64,6 @@ traits:
                     "created_at": "2019-08-26T14:50:25.643Z",
                     "updated_at": "2019-08-26T14:50:25.643Z"
                 }
-              }
   get:
     is: [withAuthHeaders]
     description: retrieve all users / Must be admin
@@ -89,6 +92,7 @@ traits:
                     "updated_at": "2019-08-26T14:50:25.643Z"
                 }
               ]
+
 /users/{id}:
   get:
     is: [withAuthHeaders]
@@ -111,20 +115,22 @@ traits:
               }
   patch:
     is: [withAuthHeaders]
-        description: update info user / must be admin
-        responses:
-          200:
-            body:
-              application/json:
-                type: |
-                  {
-                       "user": {
-                        "name": "james1",
-                        "email": "james1@gmail.com",
-                        "password": "Pokemon43!",
-                        "admin": false
-                        }
-                    }
+    description: update info user / must be admin
+    body:
+        application/json:
+          example: |
+            {
+              "user": {
+                  "name": "james1",
+                  "email": "james1@gmail.com",
+                  "password": "1234",
+                  "admin": true,
+              }
+            }
+    responses:
+      200:
+        body:
+          application/json:
                 example: |
                   {
                     {
@@ -136,6 +142,18 @@ traits:
                     "created_at": "2019-08-26T17:00:41.844Z",
                     "updated_at": "2019-08-26T17:43:42.379Z"
                     }
+                  }
+
+  delete:
+        is: [withAuthHeaders]
+        description: Delete existing user.
+        responses:
+          200:
+            body:
+              application/json:
+                example: |
+                  {
+                    "message": "Answer deleted"
                   }
 
 /time_records:
