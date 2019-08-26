@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user
-  before_action :is_admin?, except: :current_session_details
+  before_action :is_admin?, except: :current_user_details
   before_action :set_user, only: [:show, :update, :destroy]
 
   # GET /users
@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     render json: @users
   end
 
-  def current_session_details
+  def current_user_details
     @user = User.where(id: current_user.id)
     render json: @user, status: :ok
   end

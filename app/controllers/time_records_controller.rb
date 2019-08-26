@@ -8,6 +8,13 @@ class TimeRecordsController < ApplicationController
     @user_time_record = TimeRecord.where(user_id: params[:user_id]) if params[:start_date].nil? || params[:end_date].nil?
     render json: @user_time_record, status: 200
   end
+
+  def current_user_time_records_details
+    @user_time_record = TimeRecord.where('user_id = ? AND date BETWEEN ? AND ?',
+                                         current_user.id, params[:start_date], params[:end_date]) unless params[:start_date].nil? || params[:end_date].nil?
+    @user_time_record = TimeRecord.where(user_id: current_user.id) if params[:start_date].nil? || params[:end_date].nil?
+    render json: @user_time_record, status: 200
+  end
   # GET /time_records
   def index
     @time_records = TimeRecord.all

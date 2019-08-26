@@ -66,7 +66,7 @@ traits:
                 }
   get:
     is: [withAuthHeaders]
-    description: Retrieve all users
+    description: Retrieve all users excepting admins
     responses:
       200:
         body:
@@ -109,7 +109,7 @@ traits:
                     "name": "james1",
                     "email": "james1@gmail.com",
                     "password_digest": "$2a$12$oZq09XlozD19pcYlYwrEBe2/lr6Y2ETNgT.hW.uaFGUKdjDSWzqRS",
-                    "admin": false,
+                    "admin": true,
                     "created_at": "2019-08-26T14:50:25.643Z",
                     "updated_at": "2019-08-26T14:50:25.643Z"
                 }
@@ -122,10 +122,10 @@ traits:
           example: |
             {
               "user": {
-                  "name": "james1",
-                  "email": "james1@gmail.com",
+                  "name": "james Hardvard",
+                  "email": "jamesH@gmail.com",
                   "password": "1234",
-                  "admin": true,
+                  "admin": false,
               }
             }
     responses:
@@ -158,6 +158,7 @@ traits:
                   }
 
 /time_records:
+  description: All existing time records.
   post:  
       is: [withAuthHeaders]
       description: Create new time record for user
@@ -270,6 +271,58 @@ traits:
     
 /time_records/users/{user_id}:
   description: Retrieve all records from time record filtered with user id / Must be admin
+  uriParameters:
+    start_date:
+      description: "Start date"
+      required: false
+      type: date
+      example: 2019/08/20
+    end_date:
+      description: "End date"
+      required: false
+      type: date
+      example: 2019/08/23
+  get:
+    is: [withAuthHeaders]
+    description: Single records from user id filtered
+    responses:
+        200:
+          body:
+            application/json:
+              example: |
+                [
+                  {
+                    "id": 1,
+                    "user_id": 2,
+                    "date": "2019-08-26",
+                    "entrance": "2019-08-26T08:57:25.000Z",
+                    "output": "2019-08-26T12:57:25.000Z",
+                    "created_at": "2019-08-26T15:50:29.925Z",
+                    "updated_at": "2019-08-26T15:50:29.925Z"
+                  }
+                ]
+/current_user/details:
+  description: Retrieve all information from current user
+  get:
+    is: [withAuthHeaders]
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              [
+                {
+                    "id": 4,
+                    "name": "james Hardvard",
+                    "email": "jamesH@gmail.com",
+                    "password_digest": "$2a$12$lcUIjmtDkQFv.A8JQRto0enUFHo8LLkRU9afSVz2Xqpqp8xLZ0XUK",
+                    "admin": false,
+                    "created_at": "2019-08-26T19:17:57.706Z",
+                    "updated_at": "2019-08-26T19:17:57.706Z"
+                }
+              ]
+/current_user/time_record:
+  description: Retrieve all time record from current user
   uriParameters:
     start_date:
       description: "Start date"
