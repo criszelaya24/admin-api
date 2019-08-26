@@ -8,8 +8,28 @@ traits:
   withAuthHeaders:
     headers:
       Authorization:
-        description: Auth token
+        description: Auth token with the credential returned with the default admin user
         type: string
+
+/user_token:
+  description: token creation
+  post:
+    description: create token for user already signed up
+    responses:
+      200:
+        body:
+          application/json:
+           type: |
+              {
+                "auth": {
+                  "email": "string",
+                  "password": "string"
+                } 
+              }
+            example: |
+              {
+                "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NjY5MTc4NjgsInN1YiI6MSwiZW1haWwiOiJqYW1lc0BnbWFpbC5jb20ifQ.YDkzwlRq0AtRusJ4QGmBtVsgv1HnHRzV_GOmLFGw20M"
+              }
 
 /users:
   description: users related endpoints / Must be admin
@@ -88,23 +108,4 @@ traits:
                     "created_at": "2019-08-26T14:50:25.643Z",
                     "updated_at": "2019-08-26T14:50:25.643Z"
                 }
-              }
-/user_token:
-  description: token creation
-  post:
-    description: create token for user already signed up
-    responses:
-      200:
-        body:
-          application/json:
-           type: |
-              {
-                "auth": {
-                  "email": "string",
-                  "password": "string"
-                } 
-              }
-            example: |
-              {
-                "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NjY5MTc4NjgsInN1YiI6MSwiZW1haWwiOiJqYW1lc0BnbWFpbC5jb20ifQ.YDkzwlRq0AtRusJ4QGmBtVsgv1HnHRzV_GOmLFGw20M"
               }
