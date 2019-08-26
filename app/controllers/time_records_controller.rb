@@ -4,7 +4,8 @@ class TimeRecordsController < ApplicationController
   before_action :set_time_record, only: [:show, :update, :destroy]
 
   def find_user_time_record
-    @user_time_record = TimeRecord.where(user_id: params[:user_id])
+    @user_time_record = TimeRecord.where('user_id = ? AND date BETWEEN ? AND ?', params[:user_id], params[:start_date], params[:end_date]) unless params[:start_date].nil? || params[:end_date].nil?
+    @user_time_record = TimeRecord.where(user_id: params[:user_id]) if params[:start_date].nil? || params[:end_date].nil?
     render json: @user_time_record, status: 200
   end
   # GET /time_records

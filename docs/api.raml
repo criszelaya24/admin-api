@@ -270,6 +270,17 @@ traits:
     
 /time_records/users/{user_id}:
   description: Retrieve all records from time record filtered with user id / Must be admin
+  uriParameters:
+    start_date:
+      description: "Start date"
+      required: false
+      type: date
+      example: 2019/08/20
+    end_date:
+      description: "End date"
+      required: false
+      type: date
+      example: 2019/08/23
   get:
     is: [withAuthHeaders]
     description: Single records from user id filtered
