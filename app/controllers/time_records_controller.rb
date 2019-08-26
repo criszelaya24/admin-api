@@ -1,6 +1,6 @@
 class TimeRecordsController < ApplicationController
   before_action :authenticate_user
-  before_action :is_admin?, only: [:create, :index, :find_user_time_record]
+  before_action :is_admin?, only: [:create, :index, :find_user_time_record, :show, :update]
   before_action :set_time_record, only: [:show, :update, :destroy]
 
   def find_user_time_record
