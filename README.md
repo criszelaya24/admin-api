@@ -1,4 +1,5 @@
-# Admin API to register entrance and output of hours from user
+# Admin API
+### API system to register entrance and output of hours from user
 
 ## Set-up
 * Make sure to have installed ruby 2.5.1
@@ -31,3 +32,7 @@
 
 - Employee check their entry and exit report
 ```
+
+# Additional note
+- Online URL Base: https://admin-runa-hr-api.herokuapp.com
+- Local URL Base: http://localhost:3000
