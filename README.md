@@ -1,24 +1,18 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Admin API to register entrance and output of hours from user
 
-Things you may want to cover:
+## Set-up
+* Make sure to have installed ruby 2.5.1
+* Run 'Bundle install'
+* run 'rake db:drop db:create db:migrate db:seed'
+* rails s
 
-* Ruby version
+# Default Admin Credentials
+```
+- email: Admin@admin.com
+- password: 1234
+```
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# Enpoint documentation
+- Check the folder 'docs' and open the api.html

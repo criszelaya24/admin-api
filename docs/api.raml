@@ -1,0 +1,110 @@
+#%RAML 1.0
+---
+title: Admin entrance-Out
+baseUri: http://localhost:3000/app/v1/
+version: v1 
+
+traits:
+  withAuthHeaders:
+    headers:
+      Authorization:
+        description: Auth token
+        type: string
+
+/users:
+  description: users related endpoints / Must be admin
+  post:
+    is: [withAuthHeaders]
+    description: create new users
+    responses:
+      200:
+        body:
+          application/json:
+           type: |
+              {
+              "user": {
+                "name": "james1",
+                "email": "james1@gmail.com",
+                "password": "Pokemon43!",
+                "admin": false
+                }
+              }
+            example: |
+              {
+                "user": {
+                    "id": 2,
+                    "name": "james1",
+                    "email": "james1@gmail.com",
+                    "password_digest": "$2a$12$oZq09XlozD19pcYlYwrEBe2/lr6Y2ETNgT.hW.uaFGUKdjDSWzqRS",
+                    "admin": false,
+                    "created_at": "2019-08-26T14:50:25.643Z",
+                    "updated_at": "2019-08-26T14:50:25.643Z"
+                }
+              }
+  get:
+    is: [withAuthHeaders]
+    description: retrieve all users / Must be admin
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              [
+                {
+                    "id": 1,
+                    "name": "james",
+                    "email": "james@gmail.com",
+                    "password_digest": "$2a$12$oZq09XlozD19pcYlYwrEBe2/lr6Y2ETNgT.hW.uaFGUKdjDSWzqRS",
+                    "admin": true,
+                    "created_at": "2019-08-26T14:50:25.643Z",
+                    "updated_at": "2019-08-26T14:50:25.643Z"
+                }
+                {
+                    "id": 2,
+                    "name": "james1",
+                    "email": "james1@gmail.com",
+                    "password_digest": "$2a$12$oZq09XlozD19pcYlYwrEBe2/lr6Y2ETNgT.hW.uaFGUKdjDSWzqRS",
+                    "admin": false,
+                    "created_at": "2019-08-26T14:50:25.643Z",
+                    "updated_at": "2019-08-26T14:50:25.643Z"
+                }
+              ]
+/users/{id}:
+  get:
+    is: [withAuthHeaders]
+    description: retrieve all users / Must be admin
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              {
+                "user": {
+                    "id": 2,
+                    "name": "james1",
+                    "email": "james1@gmail.com",
+                    "password_digest": "$2a$12$oZq09XlozD19pcYlYwrEBe2/lr6Y2ETNgT.hW.uaFGUKdjDSWzqRS",
+                    "admin": false,
+                    "created_at": "2019-08-26T14:50:25.643Z",
+                    "updated_at": "2019-08-26T14:50:25.643Z"
+                }
+              }
+/user_token:
+  description: token creation
+  post:
+    description: create token for user already signed up
+    responses:
+      200:
+        body:
+          application/json:
+           type: |
+              {
+                "auth": {
+                  "email": "string",
+                  "password": "string"
+                } 
+              }
+            example: |
+              {
+                "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NjY5MTc4NjgsInN1YiI6MSwiZW1haWwiOiJqYW1lc0BnbWFpbC5jb20ifQ.YDkzwlRq0AtRusJ4QGmBtVsgv1HnHRzV_GOmLFGw20M"
+              }
