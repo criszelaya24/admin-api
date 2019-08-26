@@ -34,5 +34,5 @@
 ```
 
 # Additional note
-- Online URL Base: https://admin-runa-hr-api.herokuapp.com
-- Local URL Base: http://localhost:3000
+- Online URL Base: https://admin-runa-hr-api.herokuapp.com/app/v1
+- Local URL Base: http://localhost:3000/app/v1
