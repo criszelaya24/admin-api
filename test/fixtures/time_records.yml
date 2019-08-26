@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  date: 2019-08-26
+  entrance: 2019-08-26 08:44:33
+  output: 2019-08-26 08:44:33
+
+two:
+  user: two
+  date: 2019-08-26
+  entrance: 2019-08-26 08:44:33
+  output: 2019-08-26 08:44:33

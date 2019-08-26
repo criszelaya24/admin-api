@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_26_135900) do
+ActiveRecord::Schema.define(version: 2019_08_26_144433) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "time_records", force: :cascade do |t|
+    t.bigint "user_id"
+    t.date "date"
+    t.datetime "entrance"
+    t.datetime "output"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_time_records_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
@@ -24,4 +34,5 @@ ActiveRecord::Schema.define(version: 2019_08_26_135900) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "time_records", "users"
 end
