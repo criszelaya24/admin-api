@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   scope '/app/v1' do
+    get '/' => 'status#status_app'
     get 'users/admin' => 'users#users_admin'
     post 'user_token' => 'user_token#create'
     resources :users
