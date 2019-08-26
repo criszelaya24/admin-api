@@ -109,6 +109,34 @@ traits:
                     "updated_at": "2019-08-26T14:50:25.643Z"
                 }
               }
+  patch:
+    is: [withAuthHeaders]
+        description: update info user / must be admin
+        responses:
+          200:
+            body:
+              application/json:
+                type: |
+                  {
+                       "user": {
+                        "name": "james1",
+                        "email": "james1@gmail.com",
+                        "password": "Pokemon43!",
+                        "admin": false
+                        }
+                    }
+                example: |
+                  {
+                    {
+                    "id": 3,
+                    "admin": false,
+                    "password_digest": "$2a$12$quxPYsJZJJTMqnGgiTvgRetCpYTXB1.C9c6Nf/v9dXYcXmg5RVTQS",
+                    "email": "jamesH@gmail.com",
+                    "name": "james Hardvard",
+                    "created_at": "2019-08-26T17:00:41.844Z",
+                    "updated_at": "2019-08-26T17:43:42.379Z"
+                    }
+                  }
 
 /time_records:
   post:  
@@ -160,27 +188,29 @@ traits:
   patch:
     is: [withAuthHeaders]
         description: update time record
-        body:
-          application/json:
-            type: |
-              {
-                  "time_record": {
-	                  	"user_id": 2,
-	                  	"date": "2019-08-22",
-	                  	"entrance": "2019-08-22 08:57:25",
-	                  	"output": "2019-08-22 12:57:25"
-	                  }
-                }
-            example: |
-              {
-                "id": 6,
-                "user_id": 2,
-                "date": "2019-08-22",
-                "entrance": "2019-08-22T08:57:25.000Z",
-                "output": "2019-08-22T12:57:25.000Z",
-                "created_at": "2019-08-26T17:25:12.483Z",
-                "updated_at": "2019-08-26T17:26:24.726Z"
-                }
+        responses:
+          200:
+            body:
+              application/json:
+                type: |
+                  {
+                      "time_record": {
+	                      	"user_id": 2,
+	                      	"date": "2019-08-22",
+	                      	"entrance": "2019-08-22 08:57:25",
+	                      	"output": "2019-08-22 12:57:25"
+	                      }
+                    }
+                example: |
+                  {
+                    "id": 6,
+                    "user_id": 2,
+                    "date": "2019-08-22",
+                    "entrance": "2019-08-22T08:57:25.000Z",
+                    "output": "2019-08-22T12:57:25.000Z",
+                    "created_at": "2019-08-26T17:25:12.483Z",
+                    "updated_at": "2019-08-26T17:26:24.726Z"
+                    }
     delete:
         is: [withAuthHeaders]
         description: Delete existing time record.
