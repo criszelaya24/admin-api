@@ -35,7 +35,8 @@ class TimeRecordsController < ApplicationController
 
   # DELETE /time_records/1
   def destroy
-    @time_record.destroy
+    render json: { message: 'Time record Successfully deleted' }, status: 202 if @time_record.destroy
+    render json: { message: 'Time record Unsuccessfully deleted' }, status: 204 unless @time_record.destroy
   end
 
   private
