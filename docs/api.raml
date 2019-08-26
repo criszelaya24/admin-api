@@ -34,10 +34,10 @@ traits:
                 }
 
 /users:
-  description: users related endpoints / Must be admin
+  description: Users related endpoints / Must be admin
   post:
     is: [withAuthHeaders]
-    description: create new users
+    description: Create new users
     body:
           application/json:
             example: |
@@ -66,7 +66,7 @@ traits:
                 }
   get:
     is: [withAuthHeaders]
-    description: retrieve all users / Must be admin
+    description: Retrieve all users
     responses:
       200:
         body:
@@ -94,9 +94,10 @@ traits:
               ]
 
 /users/{id}:
+  description: Users related endpoints / Must be admin
   get:
     is: [withAuthHeaders]
-    description: retrieve specific user / Must be admin
+    description: Retrieve specific user
     responses:
       200:
         body:
@@ -115,7 +116,7 @@ traits:
               }
   patch:
     is: [withAuthHeaders]
-    description: update info user / must be admin
+    description: Update info user
     body:
         application/json:
           example: |
@@ -153,18 +154,16 @@ traits:
               application/json:
                 example: |
                   {
-                    "message": "Answer deleted"
+                    "message": "User Successfully deleted"
                   }
 
 /time_records:
   post:  
       is: [withAuthHeaders]
-      description: create new time record for user
-      responses:
-        200:
-          body:
+      description: Create new time record for user
+      body:
             application/json:
-             type: |
+             example: |
                 {
                   "time_record": {
                       "user_id": 2,
@@ -172,6 +171,10 @@ traits:
                       "entrance": "2019-08-26 08:57:25","output": "2019-08-26 12:57:25"
                   }
                 }
+      responses:
+        200:
+         body:
+          application/json:
               example: |
                 {
                   "id": 1,
@@ -184,13 +187,13 @@ traits:
                   }
 
   get:
-      is: [withAuthHeaders]
-      description: retrieve all records from time record / Must be admin
-      responses:
-        200:
-          body:
-            application/json:
-              example: |
+    is: [withAuthHeaders]
+    description: Retrieve all users
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
               [
                 {
                     "id": 1,
@@ -201,26 +204,20 @@ traits:
                     "created_at": "2019-08-26T15:50:29.925Z",
                     "updated_at": "2019-08-26T15:50:29.925Z"
                 }
-            ]
+              ]
+
 /time_records/{id}:
-  patch:
+  description: Specific time record / Must be admin
+  get:
     is: [withAuthHeaders]
-        description: update time record
-        responses:
-          200:
-            body:
-              application/json:
-                type: |
-                  {
-                      "time_record": {
-	                      	"user_id": 2,
-	                      	"date": "2019-08-22",
-	                      	"entrance": "2019-08-22 08:57:25",
-	                      	"output": "2019-08-22 12:57:25"
-	                      }
-                    }
-                example: |
-                  {
+    description: Retrieve specific time record with id
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              [
+                {
                     "id": 6,
                     "user_id": 2,
                     "date": "2019-08-22",
@@ -228,8 +225,9 @@ traits:
                     "output": "2019-08-22T12:57:25.000Z",
                     "created_at": "2019-08-26T17:25:12.483Z",
                     "updated_at": "2019-08-26T17:26:24.726Z"
-                    }
-    delete:
+                }
+              ]
+  delete:
         is: [withAuthHeaders]
         description: Delete existing time record.
         responses:
@@ -240,10 +238,40 @@ traits:
                   {
                     "message": "Time record Succecfully deleted"
                   }
+  patch:
+    is: [withAuthHeaders]
+    description: Update specific time record
+    body:
+        application/json:
+          example: |
+            {
+              "time_record": {
+                  "user_id": 2,
+                  "date": "2019-08-22",
+                  "entrance": "2019-08-22 08:57:25",
+                  "output": "2019-08-22 12:57:25",
+              }
+            }
+    responses:
+      200:
+        body:
+          application/json:
+                example: |
+                  {
+                    "id": 6,
+                    "user_id": 2,
+                    "date": "2019-08-22",
+                    "entrance": "2019-08-22T08:57:25.000Z",
+                    "output": "2019-08-22T12:57:25.000Z",
+                    "created_at": "2019-08-26T17:25:12.483Z",
+                    "updated_at": "2019-08-26T17:26:24.726Z"
+                  }
+    
+    
 /time_records/users/{user_id}:
   get:
       is: [withAuthHeaders]
-      description: retrieve all records from time record filtered with user id / Must be admin
+      description: Retrieve all records from time record filtered with user id / Must be admin
       queryParameters:
         user_id:
           description: "id of user"
