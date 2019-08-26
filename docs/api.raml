@@ -269,22 +269,17 @@ traits:
     
     
 /time_records/users/{user_id}:
+  description: Retrieve all records from time record filtered with user id / Must be admin
   get:
-      is: [withAuthHeaders]
-      description: Retrieve all records from time record filtered with user id / Must be admin
-      queryParameters:
-        user_id:
-          description: "id of user"
-          required: true
-          type: integer
-          example: 2
-      responses:
+    is: [withAuthHeaders]
+    description: Single records from user id filtered
+    responses:
         200:
           body:
             application/json:
               example: |
-              [
-                {
+                [
+                  {
                     "id": 1,
                     "user_id": 2,
                     "date": "2019-08-26",
@@ -292,5 +287,5 @@ traits:
                     "output": "2019-08-26T12:57:25.000Z",
                     "created_at": "2019-08-26T15:50:29.925Z",
                     "updated_at": "2019-08-26T15:50:29.925Z"
-                }
-            ]
+                  }
+                ]
