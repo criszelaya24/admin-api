@@ -92,7 +92,7 @@ traits:
 /users/{id}:
   get:
     is: [withAuthHeaders]
-    description: retrieve all users / Must be admin
+    description: retrieve specific user / Must be admin
     responses:
       200:
         body:
@@ -109,3 +109,51 @@ traits:
                     "updated_at": "2019-08-26T14:50:25.643Z"
                 }
               }
+
+/time_records:
+post:  
+    is: [withAuthHeaders]
+    description: create new time record for user
+    responses:
+      200:
+        body:
+          application/json:
+           type: |
+              {
+                "time_record": {
+                    "user_id": 2,
+                    "date": "2019-08-26",
+                    "entrance": "2019-08-26 08:57:25","output": "2019-08-26 12:57:25"
+                }
+              }
+            example: |
+              {
+                "id": 1,
+                "user_id": 2,
+                "date": "2019-08-26",
+                "entrance": "2019-08-26T08:57:25.000Z",
+                "output": "2019-08-26T12:57:25.000Z",
+                "created_at": "2019-08-26T15:05:18.023Z",
+                "updated_at": "2019-08-26T15:05:18.023Z"
+                }
+
+get:
+    is: [withAuthHeaders]
+    description: retrieve all records from time record / Must be admin
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+            [
+              {
+                  "id": 1,
+                  "user_id": 2,
+                  "date": "2019-08-26",
+                  "entrance": "2019-08-26T08:57:25.000Z",
+                  "output": "2019-08-26T12:57:25.000Z",
+                  "created_at": "2019-08-26T15:50:29.925Z",
+                  "updated_at": "2019-08-26T15:50:29.925Z"
+              }
+          ]
+              
