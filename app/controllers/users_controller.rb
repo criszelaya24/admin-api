@@ -15,6 +15,11 @@ class UsersController < ApplicationController
     render json: @user, status: :ok
   end
 
+  def users_admin
+    @user = User.where(admin: true)
+    render json: @user, status: :ok
+  end
+
   # GET /users/1
   def show
     render json: @user
